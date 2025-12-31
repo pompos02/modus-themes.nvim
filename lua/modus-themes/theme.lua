@@ -310,7 +310,7 @@ function M.setup()
                 ["@markup.strikethrough"] = { strikethrough = true }, -- Struck-through text.
                 ["@markup.underline"] = { underline = true }, -- Underlined text.
 
-                ["@markup.heading"] = { fg = c.magenta_cooler, bold = true }, -- Headings and titles.
+                ["@markup.heading"] = { link = "Title" }, -- Headings and titles.
                 ["@markup.heading.1"] = { fg = c.blue, bold = true }, -- Top-level heading.
                 ["@markup.heading.2"] = { fg = c.yellow, bold = true }, -- Section heading.
                 ["@markup.heading.3"] = { fg = c.magenta, bold = true }, -- Subsection heading.
@@ -330,7 +330,7 @@ function M.setup()
                 ["@markup.heading.5.marker.markdown"] = { link = "markdownH5Delimiter" },
                 ["@markup.heading.6.marker.markdown"] = { link = "markdownH6Delimiter" },
 
-                ["@markup.quote"] = { fg = c.fg_main, italic = true }, -- Block quotes.
+                ["@markup.quote"] = { italic = true }, -- Block quotes.
                 ["@markup.math"] = { link = "Special" }, -- Math environments (e.g. `$ ... $` in LaTeX).
                 ["@markup.environment"] = { link = "Macro" }, -- Markup environments (e.g. LaTeX).
                 ["@markup.environment.name"] = { link = "@type" }, -- Markup environment names.
@@ -340,15 +340,15 @@ function M.setup()
                 ["@markup.link.label.symbol"] = { link = "Identifier" }, -- Symbols within a link description.
                 ["@markup.link.markdown_inline"] = { fg = c.fg_dim },
                 ["@markup.link.label.markdown_inline"] = { fg = c.magenta_cooler },
-                ["@markup.link.url"] = { fg = c.cyan_cooler, underline = true }, -- URL-style links.
+                ["@markup.link.url"] = { link = "Underlined" }, -- URL-style links.
 
                 ["@markup.raw"] = { link = "String" }, -- Literal or verbatim text (e.g. inline code).
                 ["@markup.raw.block"] = { link = "String" }, -- Literal or verbatim text as standalone text.
                 ["@markup.raw.delimiter.markdown"] = { fg = c.fg_dim },
 
                 ["@markup.list"] = { fg = c.blue }, -- List markers.
-                ["@markup.list.checked"] = { fg = c.magenta_cooler, bg = c.magenta_cooler, blend = 10 }, -- Checked todo list markers.
-                ["@markup.list.unchecked"] = { fg = c.fg_main }, -- Unchecked todo list markers.
+                ["@markup.list.checked"] = { fg = c.green }, -- Checked todo list markers.
+                ["@markup.list.unchecked"] = { fg = c.yellow }, -- Unchecked todo list markers.
 
                 ["@diff.plus"] = { link = "DiffAdd" }, -- Added lines in a diff.
                 ["@diff.minus"] = { link = "DiffDelete" }, -- Removed lines in a diff.
@@ -895,23 +895,24 @@ function M.setup()
                 IblScope = { fg = c.magenta_cooler, nocombine = true },
 
                 -- render-markdown.nvim
-                RenderMarkdownH1 = { fg = c.blue, bold = true },
-                RenderMarkdownH2 = { fg = c.yellow, bold = true },
-                RenderMarkdownH3 = { fg = c.magenta, bold = true },
-                RenderMarkdownH4 = { fg = c.green, bold = true },
-                RenderMarkdownH5 = { fg = c.red, bold = true },
-                RenderMarkdownH6 = { fg = c.cyan_warmer, bold = true },
-                RenderMarkdownH1Bg = { bg = c.blue, blend = 20 },
-                RenderMarkdownH2Bg = { bg = c.yellow, blend = 20 },
-                RenderMarkdownH3Bg = { bg = c.magenta, blend = 20 },
-                RenderMarkdownH4Bg = { bg = c.green, blend = 20 },
-                RenderMarkdownH5Bg = { bg = c.red, blend = 20 },
-                RenderMarkdownH6Bg = { bg = c.cyan_warmer, blend = 20 },
+                RenderMarkdownH1 = { link = "@markup.heading.1" },
+                RenderMarkdownH2 = { link = "@markup.heading.2" },
+                RenderMarkdownH3 = { link = "@markup.heading.3" },
+                RenderMarkdownH4 = { link = "@markup.heading.4" },
+                RenderMarkdownH5 = { link = "@markup.heading.5" },
+                RenderMarkdownH6 = { link = "@markup.heading.6" },
+                RenderMarkdownH1Bg = { fg = c.blue, bg = c.bg_blue_nuanced },
+                RenderMarkdownH2Bg = { fg = c.yellow, bg = c.bg_yellow_nuanced },
+                RenderMarkdownH3Bg = { fg = c.magenta, bg = c.bg_magenta_nuanced },
+                RenderMarkdownH4Bg = { fg = c.green, bg = c.bg_green_nuanced },
+                RenderMarkdownH5Bg = { fg = c.red, bg = c.bg_red_nuanced },
+                RenderMarkdownH6Bg = { fg = c.cyan_warmer, bg = c.bg_cyan_nuanced },
                 RenderMarkdownCode = { bg = c.bg_alt },
                 RenderMarkdownCodeInfo = { fg = c.fg_dim, bg = c.bg_main },
                 RenderMarkdownCodeBorder = { fg = c.border, bg = c.bg_main },
                 RenderMarkdownCodeLanguage = { fg = c.cyan_cooler, bold = true },
                 RenderMarkdownCodeFallback = { fg = c.fg_inactive },
+
                 RenderMarkdownCodeInline = { fg = c.magenta_cooler, bg = c.bg_alt },
                 RenderMarkdownQuote1 = { fg = c.fg_dim },
                 RenderMarkdownQuote2 = { fg = c.yellow },
