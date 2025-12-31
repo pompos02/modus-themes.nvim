@@ -71,8 +71,8 @@ function M.setup()
         PmenuExtraSel = { fg = c.fg_alt, bg = c.bg_completion }, -- Popup menu: selected extra text.
         PmenuKind = { fg = c.magenta_cooler, bg = c.bg_main }, -- Popup menu: item kind.
         PmenuKindSel = { fg = c.fg_alt, bg = c.bg_completion }, -- Popup menu: selected item kind.
-        PmenuMatch = { fg = c.green }, -- Popup menu: matched text.
-        PmenuMatchSel = { fg = c.green, bg = c.bg_completion }, -- Popup menu: matched text in selected item.
+        PmenuMatch = { fg = c.magenta }, -- Popup menu: matched text.
+        PmenuMatchSel = { fg = c.magenta, bg = c.bg_completion }, -- Popup menu: matched text in selected item.
         Menu = { link = "Pmenu" }, -- Menu.
         Scrollbar = { link = "PmenuSbar" }, -- Scrollbar.
         Directory = { fg = c.blue }, -- Directory names (and other special names in listings).
@@ -152,20 +152,36 @@ function M.setup()
         htmlH5 = { fg = c.red, bold = true },
         htmlH6 = { fg = c.cyan_warmer, bold = true },
 
-        mkdCodeDelimiter = { bg = c.bg_alt, fg = c.fg_main },
-        mkdCodeStart = { fg = c.cyan_cooler, bold = true },
-        mkdCodeEnd = { fg = c.cyan_cooler, bold = true },
+        mkdCode = { fg = c.magenta_cooler },
+        mkdCodeDelimiter = { fg = c.magenta_warmer },
+        mkdCodeStart = { fg = c.magenta_cooler, bold = true },
+        mkdCodeEnd = { fg = c.magenta_cooler, bold = true },
+        mkdFootnotes = { fg = c.magenta_cooler },
+        mkdID = { fg = c.magenta_cooler, underline = true },
+        mkdInlineURL = { link = "markdownUrl" },
+        mkdLink = { link = "markdownUrl" },
+        mkdLinkDef = { link = "markdownUrl" },
+        mkdListItemLine = { fg = c.fg_main },
+        mkdRule = { fg = c.fg_dim },
+        mkdURL = { link = "markdownUrl" },
 
         markdownHeadingDelimiter = { fg = c.rust, bold = true },
-        markdownCode = { fg = c.cyan_cooler },
-        markdownCodeBlock = { fg = c.cyan_cooler },
-        markdownLinkText = { fg = c.blue, underline = true },
+        markdownCode = { fg = c.magenta_cooler },
+        markdownCodeBlock = { fg = c.magenta_cooler },
+        markdownLinkText = { fg = c.cyan_cooler, underline = true },
+        markdownUrl = { fg = c.cyan_cooler, underline = true },
         markdownH1 = { link = "@markup.heading.1" },
         markdownH2 = { link = "@markup.heading.2" },
         markdownH3 = { link = "@markup.heading.3" },
         markdownH4 = { link = "@markup.heading.4" },
         markdownH5 = { link = "@markup.heading.5" },
         markdownH6 = { link = "@markup.heading.6" },
+        markdownH1Delimiter = { link = "markdownHeadingDelimiter" },
+        markdownH2Delimiter = { link = "markdownHeadingDelimiter" },
+        markdownH3Delimiter = { link = "markdownHeadingDelimiter" },
+        markdownH4Delimiter = { link = "markdownHeadingDelimiter" },
+        markdownH5Delimiter = { link = "markdownHeadingDelimiter" },
+        markdownH6Delimiter = { link = "markdownHeadingDelimiter" },
 
         -- These groups are for the native LSP client. Some other LSP clients may
         -- use these groups, or use their own. Consult your LSP client's
@@ -294,28 +310,45 @@ function M.setup()
                 ["@markup.strikethrough"] = { strikethrough = true }, -- Struck-through text.
                 ["@markup.underline"] = { underline = true }, -- Underlined text.
 
-                ["@markup.heading"] = { link = "Title" }, -- Headings and titles.
+                ["@markup.heading"] = { fg = c.magenta_cooler, bold = true }, -- Headings and titles.
                 ["@markup.heading.1"] = { fg = c.blue, bold = true }, -- Top-level heading.
                 ["@markup.heading.2"] = { fg = c.yellow, bold = true }, -- Section heading.
                 ["@markup.heading.3"] = { fg = c.magenta, bold = true }, -- Subsection heading.
                 ["@markup.heading.4"] = { fg = c.green, bold = true }, -- And so on ...
                 ["@markup.heading.5"] = { fg = c.red, bold = true }, -- And so forth ...
                 ["@markup.heading.6"] = { fg = c.cyan_warmer, bold = true }, -- Last highlighted level.
+                ["@markup.heading.1.markdown"] = { link = "markdownH1" },
+                ["@markup.heading.2.markdown"] = { link = "markdownH2" },
+                ["@markup.heading.3.markdown"] = { link = "markdownH3" },
+                ["@markup.heading.4.markdown"] = { link = "markdownH4" },
+                ["@markup.heading.5.markdown"] = { link = "markdownH5" },
+                ["@markup.heading.6.markdown"] = { link = "markdownH6" },
+                ["@markup.heading.1.marker.markdown"] = { link = "markdownH1Delimiter" },
+                ["@markup.heading.2.marker.markdown"] = { link = "markdownH2Delimiter" },
+                ["@markup.heading.3.marker.markdown"] = { link = "markdownH3Delimiter" },
+                ["@markup.heading.4.marker.markdown"] = { link = "markdownH4Delimiter" },
+                ["@markup.heading.5.marker.markdown"] = { link = "markdownH5Delimiter" },
+                ["@markup.heading.6.marker.markdown"] = { link = "markdownH6Delimiter" },
 
-                ["@markup.quote"] = { italic = true }, -- Block quotes.
+                ["@markup.quote"] = { fg = c.fg_main, italic = true }, -- Block quotes.
                 ["@markup.math"] = { link = "Special" }, -- Math environments (e.g. `$ ... $` in LaTeX).
+                ["@markup.environment"] = { link = "Macro" }, -- Markup environments (e.g. LaTeX).
+                ["@markup.environment.name"] = { link = "@type" }, -- Markup environment names.
 
                 ["@markup.link"] = { fg = c.cyan_cooler }, -- Text references, footnotes, citations.
                 ["@markup.link.label"] = { link = "SpecialChar" }, -- Link, reference descriptions.
                 ["@markup.link.label.symbol"] = { link = "Identifier" }, -- Symbols within a link description.
-                ["@markup.link.url"] = { link = "Underlined" }, -- URL-style links.
+                ["@markup.link.markdown_inline"] = { fg = c.fg_dim },
+                ["@markup.link.label.markdown_inline"] = { fg = c.magenta_cooler },
+                ["@markup.link.url"] = { fg = c.cyan_cooler, underline = true }, -- URL-style links.
 
                 ["@markup.raw"] = { link = "String" }, -- Literal or verbatim text (e.g. inline code).
                 ["@markup.raw.block"] = { link = "String" }, -- Literal or verbatim text as standalone text.
+                ["@markup.raw.delimiter.markdown"] = { fg = c.fg_dim },
 
-                ["@markup.list"] = { fg = c.fg_main }, -- List markers.
-                ["@markup.list.checked"] = { fg = c.green }, -- Checked todo list markers.
-                ["@markup.list.unchecked"] = { fg = c.yellow }, -- Unchecked todo list markers.
+                ["@markup.list"] = { fg = c.blue }, -- List markers.
+                ["@markup.list.checked"] = { fg = c.magenta_cooler, bg = c.magenta_cooler, blend = 10 }, -- Checked todo list markers.
+                ["@markup.list.unchecked"] = { fg = c.fg_main }, -- Unchecked todo list markers.
 
                 ["@diff.plus"] = { link = "DiffAdd" }, -- Added lines in a diff.
                 ["@diff.minus"] = { link = "DiffDelete" }, -- Removed lines in a diff.
@@ -862,20 +895,53 @@ function M.setup()
                 IblScope = { fg = c.magenta_cooler, nocombine = true },
 
                 -- render-markdown.nvim
-                RenderMarkdownCodeInline = { link = "markdownCode" },
-                RenderMarkdownCode = { link = "markdownCodeBlock" },
-                RenderMarkdownH1 = { link = "@markup.heading.1" },
-                RenderMarkdownH2 = { link = "@markup.heading.2" },
-                RenderMarkdownH3 = { link = "@markup.heading.3" },
-                RenderMarkdownH4 = { link = "@markup.heading.4" },
-                RenderMarkdownH5 = { link = "@markup.heading.5" },
-                RenderMarkdownH6 = { link = "@markup.heading.6" },
-                RenderMarkdownH1Bg = { fg = c.blue, bg = c.bg_blue_nuanced },
-                RenderMarkdownH2Bg = { fg = c.yellow, bg = c.bg_yellow_nuanced },
-                RenderMarkdownH3Bg = { fg = c.magenta, bg = c.bg_magenta_nuanced },
-                RenderMarkdownH4Bg = { fg = c.green, bg = c.bg_green_nuanced },
-                RenderMarkdownH5Bg = { fg = c.red, bg = c.bg_red_nuanced },
-                RenderMarkdownH6Bg = { fg = c.cyan_warmer, bg = c.bg_cyan_nuanced },
+                RenderMarkdownH1 = { fg = c.blue, bold = true },
+                RenderMarkdownH2 = { fg = c.yellow, bold = true },
+                RenderMarkdownH3 = { fg = c.magenta, bold = true },
+                RenderMarkdownH4 = { fg = c.green, bold = true },
+                RenderMarkdownH5 = { fg = c.red, bold = true },
+                RenderMarkdownH6 = { fg = c.cyan_warmer, bold = true },
+                RenderMarkdownH1Bg = { bg = c.blue, blend = 20 },
+                RenderMarkdownH2Bg = { bg = c.yellow, blend = 20 },
+                RenderMarkdownH3Bg = { bg = c.magenta, blend = 20 },
+                RenderMarkdownH4Bg = { bg = c.green, blend = 20 },
+                RenderMarkdownH5Bg = { bg = c.red, blend = 20 },
+                RenderMarkdownH6Bg = { bg = c.cyan_warmer, blend = 20 },
+                RenderMarkdownCode = { bg = c.bg_alt },
+                RenderMarkdownCodeInfo = { fg = c.fg_dim, bg = c.bg_main },
+                RenderMarkdownCodeBorder = { fg = c.border, bg = c.bg_main },
+                RenderMarkdownCodeLanguage = { fg = c.cyan_cooler, bold = true },
+                RenderMarkdownCodeFallback = { fg = c.fg_inactive },
+                RenderMarkdownCodeInline = { fg = c.magenta_cooler, bg = c.bg_alt },
+                RenderMarkdownQuote1 = { fg = c.fg_dim },
+                RenderMarkdownQuote2 = { fg = c.yellow },
+                RenderMarkdownQuote3 = { fg = c.magenta },
+                RenderMarkdownQuote4 = { fg = c.green },
+                RenderMarkdownQuote5 = { fg = c.red },
+                RenderMarkdownQuote6 = { fg = c.cyan_warmer },
+                RenderMarkdownQuote = { link = "RenderMarkdownQuote1" },
+                RenderMarkdownLink = { fg = c.cyan_cooler },
+                RenderMarkdownWikiLink = { fg = c.cyan_cooler },
+                RenderMarkdownWikiLinkText = { fg = c.fg_main },
+                RenderMarkdownWikiLinkUnderline = { sp = c.cyan_cooler },
+                RenderMarkdownUnchecked = { fg = c.fg_dim },
+                RenderMarkdownChecked = { fg = c.magenta_cooler },
+                RenderMarkdownTodo = { link = "Todo" },
+                RenderMarkdownTableHead = { fg = c.fg_dim, bold = true },
+                RenderMarkdownTableRow = { fg = c.fg_dim },
+                RenderMarkdownTableFill = { link = "Conceal" },
+                RenderMarkdownInfo = { fg = c.info, bg = c.info, blend = 10 },
+                RenderMarkdownSuccess = { fg = c.ok, bg = c.ok, blend = 10 },
+                RenderMarkdownHint = { fg = c.hint, bg = c.hint, blend = 10 },
+                RenderMarkdownWarn = { fg = c.warning, bg = c.warning, blend = 10 },
+                RenderMarkdownError = { fg = c.error, bg = c.error, blend = 10 },
+                RenderMarkdownBullet = { fg = c.magenta_warmer },
+                RenderMarkdownDash = { fg = c.fg_inactive },
+                RenderMarkdownSign = { fg = c.fg_dim },
+                RenderMarkdownMath = { fg = c.magenta },
+                RenderMarkdownIndent = { fg = c.fg_inactive, nocombine = true },
+                RenderMarkdownHtmlComment = { fg = c.fg_dim, italic = true },
+                RenderMarkdownInlineHighlight = { fg = c.fg_main, bg = c.bg_hl_line },
 
                 -- snacks.nvim
                 SnacksPicker = { link = "Normal" },
