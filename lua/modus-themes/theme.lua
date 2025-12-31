@@ -63,15 +63,21 @@ function M.setup()
         CurSearch = { link = "IncSearch" },
         Substitute = { fg = c.fg_main, bg = c.bg_red_intense }, -- |:substitute| replacement text highlighting.
         QuickFixLine = { fg = c.fg_main, bg = c.visual }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-        Pmenu = { fg = c.fg_active, bg = c.bg_active }, -- Popup menu: normal item.
-        PmenuSel = { fg = c.bg_active, bg = c.fg_active }, -- Popup menu: selected item.
-        PmenuSbar = { fg = c.fg_active, bg = c.bg_dim }, -- Popup menu: scrollbar.
-        PmenuThumb = { link = "Cursor" }, -- Popup menu: Thumb of the scrollbar.
+        Pmenu = { fg = c.fg_alt, bg = c.bg_main }, -- Popup menu: normal item.
+        PmenuSel = { fg = c.fg_main, bg = c.bg_completion }, -- Popup menu: selected item.
+        PmenuSbar = { bg = c.bg_main }, -- Popup menu: scrollbar.
+        PmenuThumb = { bg = c.fg_dim }, -- Popup menu: Thumb of the scrollbar.
+        PmenuExtra = { fg = c.fg_dim, bg = c.bg_main }, -- Popup menu: extra text.
+        PmenuExtraSel = { fg = c.fg_alt, bg = c.bg_completion }, -- Popup menu: selected extra text.
+        PmenuKind = { fg = c.magenta_cooler, bg = c.bg_main }, -- Popup menu: item kind.
+        PmenuKindSel = { fg = c.fg_alt, bg = c.bg_completion }, -- Popup menu: selected item kind.
+        PmenuMatch = { fg = c.green }, -- Popup menu: matched text.
+        PmenuMatchSel = { fg = c.green, bg = c.bg_completion }, -- Popup menu: matched text in selected item.
         Menu = { link = "Pmenu" }, -- Menu.
         Scrollbar = { link = "PmenuSbar" }, -- Scrollbar.
         Directory = { fg = c.blue }, -- Directory names (and other special names in listings).
         Title = { fg = c.fg_alt, bold = true }, -- titles for output from `:set all`, `:autocmd` etc.
-        Visual = { fg = c.fg_main, bg = c.visual }, -- Visual mode selection.
+        Visual = { fg = c.fg_main, bg = c.visual, blend = 38 }, -- Visual mode selection.
         VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
         WildMenu = { fg = c.fg_main, bg = c.visual }, -- current match in `wildmenu` completion.
         Whitespace = { link = "NonText" }, -- `nbsp`, `space`, `tab` and `trail` in `listchars`.
@@ -677,8 +683,8 @@ function M.setup()
                 CmpGhostText = { fg = c.fg_dim },
                 CmpItemAbbr = { fg = c.fg_main, bg = c.none },
                 CmpItemAbbrDeprecated = { fg = c.fg_dim, bg = c.none, strikethrough = true },
-                CmpItemAbbrMatch = { fg = c.blue_warmer, bg = c.none },
-                CmpItemAbbrMatchFuzzy = { fg = c.blue_warmer, bg = c.none },
+                CmpItemAbbrMatch = { fg = c.green, bg = c.none },
+                CmpItemAbbrMatchFuzzy = { fg = c.green, bg = c.none },
                 CmpItemMenu = { fg = c.fg_alt, bg = c.none },
                 CmpItemKindDefault = { fg = c.fg_dim, bg = c.none },
                 CmpItemKindCopilot = { fg = c.cyan_cooler, bg = c.none },
@@ -899,6 +905,14 @@ function M.setup()
                 -- Lazy
                 LazyProgressDone = { bold = true, fg = c.magenta_cooler },
                 LazyProgressTodo = { bold = true, fg = c.fg_dim },
+
+                -- TreeSitter Context
+
+                TreesitterContext = { link = "Normal" },
+                TreesitterContextLineNumber = { link = "LineNr" },
+                TreesitterContextBottom = { underline = true, sp = c.fg_dim },
+                TreesitterContextLineNumberBottom = { underline = true, sp = c.fg_dim },
+                TreesitterContextSeparator = { link = "FloatBorder" },
 
                 -- nvim-notify
                 NotifyBackground = { fg = c.fg_main, bg = c.bg_main },
