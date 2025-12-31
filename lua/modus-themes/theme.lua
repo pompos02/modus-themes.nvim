@@ -122,7 +122,7 @@ function M.setup()
         Structure = { fg = c.magenta_cooler }, -- `struct`, `union`, `enum`, etc.
         Constant = { fg = c.fg_main }, -- (preferred) any constant.
         Function = { fg = c.magenta, style = options.styles.functions }, -- Function names.
-        Identifier = { fg = c.cyan, style = options.styles.variables }, -- (preferred) any variable name.
+        Identifier = { fg = c.fg_main, style = options.styles.variables }, -- (preferred) any variable name.
         PreProc = { fg = c.red_cooler }, -- (preferred) generic preprocessor.
         Include = { fg = c.red_cooler }, -- preprocessor `#include`.
         Define = { fg = c.red_cooler }, -- preprocessor `#define`.
@@ -204,9 +204,9 @@ function M.setup()
         -- Neovim tree-sitter highlights
         -- Identifiers
         ["@variable"] = { link = "Identifier" }, -- Any variable name that does not have another highlight.
-        ["@variable.builtin"] = { link = "Conditional" }, -- Variable names that are defined by the languages, like `this` or `self`.
-        ["@variable.parameter"] = { fg = c.cyan }, -- Parameters of a function.
-        ["@variable.parameter.builtin"] = { fg = c.cyan_faint }, -- Built-in parameters of a function (e.g. `...` or `_`).
+        ["@variable.builtin"] = { fg = c.magenta_cooler }, -- Variable names that are defined by the languages, like `this` or `self`.
+        ["@variable.parameter"] = { link = "Identifier" }, -- Parameters of a function.
+        ["@variable.parameter.builtin"] = { link = "Identifier" }, -- Built-in parameters of a function (e.g. `...` or `_`).
             ["@variable.member"] = { link = "Identifier" }, -- Object and struct fields.
 
             ["@constant"] = { link = "Constant" }, -- Constant identifier.
