@@ -95,9 +95,9 @@ function M.setup()
         MoreMsg = { fg = c.blue }, -- The |more-prompt|.
         VertSplit = { fg = c.border }, -- The column separating vertically split windows.
         WinSeparator = { fg = c.border, bold = true }, -- The column separating vertically split windows.
-        DiffAdd = { bg = c.bg_added, blend = 20 }, -- Diff mode: Added line |diff.txt|.
-        DiffDelete = { bg = c.bg_removed, blend = 20 }, -- Diff mode: Deleted line |diff.txt|.
-        DiffChange = { bg = c.bg_changed, blend = 20 }, -- Diff mode: Changed line |diff.txt|.
+        DiffAdd = { bg = c.bg_added, blend = 40 }, -- Diff mode: Added line |diff.txt|.
+        DiffDelete = { bg = c.bg_removed, blend = 40 }, -- Diff mode: Deleted line |diff.txt|.
+        DiffChange = { bg = c.bg_changed, blend = 40 }, -- Diff mode: Changed line |diff.txt|.
         DiffText = { bg = c.bg_added_refine, blend = 40 }, -- Diff mode: Changed text within a changed line |diff.txt|.
         SpecialKey = { fg = c.fg_dim }, -- Unprintable characters: text displayed differently from what it really is.  But not `listchars` whitespace. |hl-Whitespace|.
         SpellBad = { sp = c.error, undercurl = true }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
@@ -353,8 +353,8 @@ function M.setup()
                 ["@diff.plus"] = { link = "DiffAdd" }, -- Added lines in a diff.
                 ["@diff.minus"] = { link = "DiffDelete" }, -- Removed lines in a diff.
                 ["@diff.delta"] = { link = "DiffChange" }, -- Changed lines in a diff.
-                ["@text.diff.add"] = {  bg = c.bg_added, blend = 20 },
-                ["@text.diff.delete"] = { bg = c.bg_removed , blend = 20 },
+                ["@text.diff.add"] = { link = "DiffAdd" },
+                ["@text.diff.delete"] = { link = "DiffDelete" },
 
                 ["@tag"] = { link = "Label" }, -- XML-style tag names (e.g. in XML, HTML).
                 ["@tag.attribute"] = { link = "@property" }, -- XML-style tag attributes.
