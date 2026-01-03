@@ -1,6 +1,40 @@
 local colors = require("modus-themes.colors")
 
 local M = {}
+
+local function blend_hex(fg, bg, alpha)
+    if type(fg) ~= "string" or type(bg) ~= "string" then
+        return fg
+    end
+    if fg == "NONE" or bg == "NONE" then
+        return fg
+    end
+
+    local function hex_to_rgb(hex)
+        hex = hex:gsub("#", "")
+        if #hex ~= 6 then
+            return nil
+        end
+        return tonumber(hex:sub(1, 2), 16), tonumber(hex:sub(3, 4), 16), tonumber(hex:sub(5, 6), 16)
+    end
+
+    local function rgb_to_hex(r, g, b)
+        return string.format("#%02x%02x%02x", r, g, b)
+    end
+
+    local fr, fg_, fb = hex_to_rgb(fg)
+    local br, bg_, bb = hex_to_rgb(bg)
+    if not fr or not br then
+        return fg
+    end
+
+    local blend = alpha / 100
+    local function mix(a, b)
+        return math.floor((1 - blend) * a + blend * b + 0.5)
+    end
+
+    return rgb_to_hex(mix(fr, br), mix(fg_, bg_), mix(fb, bb))
+end
 --
 ---@class Highlight
 ---@field fg string|nil
@@ -29,6 +63,7 @@ function M.setup()
     local bg_sidebar = options.transparent and c.none or c.bg_sidebar -- Sidebar background color (can be transparent).
     local bg_inactive = options.dim_inactive and c.bg_inactive or bg_main -- Inactive window background color (can be dimmed).
     local fg_inactive = options.dim_inactive and c.fg_inactive or c.fg_main -- Inactive window foreground color (can be dimmed).
+    local visual_bg = bg_main == c.none and c.visual or blend_hex(c.visual, bg_main, 38)
 
     theme.highlights = {
         -- UI
@@ -62,7 +97,7 @@ function M.setup()
         IncSearch = { fg = c.fg_main, bg = c.bg_cyan_intense }, -- `incsearch` highlighting; also used for the text replaced with `:s///c`.
         CurSearch = { link = "IncSearch" },
         Substitute = { fg = c.fg_main, bg = c.bg_red_intense }, -- |:substitute| replacement text highlighting.
-        QuickFixLine = { fg = c.fg_main, bg = c.visual }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+        QuickFixLine = { fg = c.fg_main, bg = visual_bg }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         Pmenu = { fg = c.fg_alt, bg = c.bg_main }, -- Popup menu: normal item.
         PmenuSel = { fg = c.fg_main, bg = c.bg_completion }, -- Popup menu: selected item.
         PmenuSbar = { bg = c.bg_main }, -- Popup menu: scrollbar.
@@ -77,9 +112,9 @@ function M.setup()
         Scrollbar = { link = "PmenuSbar" }, -- Scrollbar.
         Directory = { fg = c.blue }, -- Directory names (and other special names in listings).
         Title = { fg = c.fg_alt, bold = true }, -- titles for output from `:set all`, `:autocmd` etc.
-        Visual = { fg = c.fg_main, bg = c.visual, blend = 38 }, -- Visual mode selection.
+        Visual = { fg = c.fg_main, bg = visual_bg }, -- Visual mode selection.
         VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
-        WildMenu = { fg = c.fg_main, bg = c.visual }, -- current match in `wildmenu` completion.
+        WildMenu = { fg = c.fg_main, bg = visual_bg }, -- current match in `wildmenu` completion.
         Whitespace = { link = "NonText" }, -- `nbsp`, `space`, `tab` and `trail` in `listchars`.
         StatusLine = { fg = c.fg_status_line_active, bg = c.bg_status_line_active }, -- Status line of current window.
         StatusLineNC = { fg = c.fg_status_line_inactive, bg = c.bg_status_line_inactive }, -- Status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use `^^^` in the status line of the current window.
@@ -220,7 +255,7 @@ function M.setup()
         -- Neovim tree-sitter highlights
         -- Identifiers
         ["@variable"] = { link = "Identifier" }, -- Any variable name that does not have another highlight.
-        ["@variable.builtin"] = { fg = c.magenta_cooler }, -- Variable names that are defined by the languages, like `this` or `self`.
+        ["@variable.builtin"] = { fg = c.magenta_cooler, bold = true}, -- Variable names that are defined by the languages, like `this` or `self`.
         ["@variable.parameter"] = { link = "Identifier" }, -- Parameters of a function.
         ["@variable.parameter.builtin"] = { link = "Identifier" }, -- Built-in parameters of a function (e.g. `...` or `_`).
             ["@variable.member"] = { link = "Identifier" }, -- Object and struct fields.
@@ -293,7 +328,7 @@ function M.setup()
                 -- Punctuation
                 ["@punctuation.delimiter"] = { link = "Delimiter" }, -- Delimiters (e.g. `.`, `,` `:`).
                 ["@punctuation.bracket"] = { fg = c.fg_main }, -- Brackets and parens (e.g. `()`, `{}`, `[]`).
-                ["@punctuation.special"] = { fg = c.fg_main }, -- Special symbols (e.g. `{}` in string interpolation).
+                ["@punctuation.special"] = { fg = c.magenta_intense }, -- Special symbols (e.g. `{}` in string interpolation).
 
                 -- Comments
                 ["@comment"] = { link = "Comment" }, -- Line and block comments.
@@ -683,7 +718,7 @@ function M.setup()
 
                 -- Sneak
                 Sneak = { fg = c.bg_hl_line, bg = c.magenta },
-                SneakScope = { bg = c.visual },
+                SneakScope = { bg = visual_bg },
 
                 -- Hop
                 HopNextKey = { fg = c.magenta_cooler, bold = true },
