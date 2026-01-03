@@ -63,7 +63,7 @@ function M.setup()
     local bg_sidebar = options.transparent and c.none or c.bg_sidebar -- Sidebar background color (can be transparent).
     local bg_inactive = options.dim_inactive and c.bg_inactive or bg_main -- Inactive window background color (can be dimmed).
     local fg_inactive = options.dim_inactive and c.fg_inactive or c.fg_main -- Inactive window foreground color (can be dimmed).
-    local visual_bg = bg_main == c.none and c.visual or blend_hex(c.visual, bg_main, 38)
+    local visual_bg = bg_main == c.none and c.visual or blend_hex(c.visual, bg_main, 60)
 
     theme.highlights = {
         -- UI
