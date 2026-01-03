@@ -457,7 +457,7 @@ function M.setup(opts)
     colors.hint = colors.cyan_faint
     colors.ok = colors.green_cooler
     colors.success = colors.fg_added
-    colors.visual = colors.bg_blue_intense
+    colors.visual = colors.bg_blue_nuanced
     colors.accent_light = colors.blue_faint
     colors.accent = colors.blue_warmer
     colors.accent_darker = colors.blue
