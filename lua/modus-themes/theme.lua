@@ -77,7 +77,7 @@ function M.setup()
         Scrollbar = { link = "PmenuSbar" }, -- Scrollbar.
         Directory = { fg = c.blue }, -- Directory names (and other special names in listings).
         Title = { fg = c.fg_alt, bold = true }, -- titles for output from `:set all`, `:autocmd` etc.
-        Visual = { fg = c.fg_main, bg = c.visual, blend = 38 }, -- Visual mode selection.
+        Visual = { fg = c.fg_main, bg = c.visual, blend = 90 }, -- Visual mode selection.
         VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
         WildMenu = { fg = c.fg_main, bg = c.visual }, -- current match in `wildmenu` completion.
         Whitespace = { link = "NonText" }, -- `nbsp`, `space`, `tab` and `trail` in `listchars`.
