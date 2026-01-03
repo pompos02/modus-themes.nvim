@@ -353,6 +353,8 @@ function M.setup()
                 ["@diff.plus"] = { link = "DiffAdd" }, -- Added lines in a diff.
                 ["@diff.minus"] = { link = "DiffDelete" }, -- Removed lines in a diff.
                 ["@diff.delta"] = { link = "DiffChange" }, -- Changed lines in a diff.
+                ["@text.diff.add"] = {  bg = c.bg_added, blend = 20 },
+                ["@text.diff.delete"] = { bg = c.bg_removed , blend = 20 },
 
                 ["@tag"] = { link = "Label" }, -- XML-style tag names (e.g. in XML, HTML).
                 ["@tag.attribute"] = { link = "@property" }, -- XML-style tag attributes.
