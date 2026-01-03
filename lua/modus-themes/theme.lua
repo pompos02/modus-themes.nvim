@@ -77,7 +77,7 @@ function M.setup()
         Scrollbar = { link = "PmenuSbar" }, -- Scrollbar.
         Directory = { fg = c.blue }, -- Directory names (and other special names in listings).
         Title = { fg = c.fg_alt, bold = true }, -- titles for output from `:set all`, `:autocmd` etc.
-        Visual = { fg = c.fg_main, bg = c.visual, blend = 90 }, -- Visual mode selection.
+        Visual = { fg = c.fg_main, bg = c.visual, blend = 38 }, -- Visual mode selection.
         VisualNOS = { link = "Visual" }, -- Visual mode selection when vim is "Not Owning the Selection".
         WildMenu = { fg = c.fg_main, bg = c.visual }, -- current match in `wildmenu` completion.
         Whitespace = { link = "NonText" }, -- `nbsp`, `space`, `tab` and `trail` in `listchars`.
@@ -95,10 +95,10 @@ function M.setup()
         MoreMsg = { fg = c.blue }, -- The |more-prompt|.
         VertSplit = { fg = c.border }, -- The column separating vertically split windows.
         WinSeparator = { fg = c.border, bold = true }, -- The column separating vertically split windows.
-        DiffAdd = { fg = c.fg_added, bg = c.bg_added }, -- Diff mode: Added line |diff.txt|.
-        DiffDelete = { fg = c.fg_removed, bg = c.bg_removed }, -- Diff mode: Deleted line |diff.txt|.
-        DiffChange = { fg = c.fg_changed, bg = c.bg_changed }, -- Diff mode: Changed line |diff.txt|.
-        DiffText = { fg = c.fg_changed, bg = c.bg_added_refine }, -- Diff mode: Changed text within a changed line |diff.txt|.
+        DiffAdd = { bg = c.bg_added, blend = 20 }, -- Diff mode: Added line |diff.txt|.
+        DiffDelete = { bg = c.bg_removed, blend = 20 }, -- Diff mode: Deleted line |diff.txt|.
+        DiffChange = { bg = c.bg_changed, blend = 20 }, -- Diff mode: Changed line |diff.txt|.
+        DiffText = { bg = c.bg_added_refine, blend = 40 }, -- Diff mode: Changed text within a changed line |diff.txt|.
         SpecialKey = { fg = c.fg_dim }, -- Unprintable characters: text displayed differently from what it really is.  But not `listchars` whitespace. |hl-Whitespace|.
         SpellBad = { sp = c.error, undercurl = true }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
         SpellCap = { sp = c.warning, undercurl = true }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
