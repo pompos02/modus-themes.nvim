@@ -370,7 +370,8 @@ function M.setup()
                 ["@markup.environment"] = { link = "Macro" }, -- Markup environments (e.g. LaTeX).
                 ["@markup.environment.name"] = { link = "@type" }, -- Markup environment names.
 
-                ["@markup.link"] = { fg = c.cyan_cooler }, -- Text references, footnotes, citations.
+                ["@markup.link"] = { fg = c.cyan_cooler, underline = true }, -- Text references, footnotes, citations.
+                ["@markup.link.gitcommit"] = { link = "@markup.link" },
                 ["@markup.link.label"] = { link = "SpecialChar" }, -- Link, reference descriptions.
                 ["@markup.link.label.symbol"] = { link = "Identifier" }, -- Symbols within a link description.
                 ["@markup.link.markdown_inline"] = { fg = c.fg_dim },
