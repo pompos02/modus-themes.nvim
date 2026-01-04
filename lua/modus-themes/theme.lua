@@ -73,7 +73,7 @@ function M.setup()
             bg = bg_inactive,
         }, -- Normal text in non-current windows.
         NormalSB = { fg = c.fg_sidebar, bg = bg_sidebar }, -- Normal text in sidebar.
-        NormalFloat = { fg = c.fg_active, bg = c.bg_active }, -- Float Window.
+        NormalFloat = { fg = c.fg_main, bg = c.bg_main }, -- Float Window.
         FloatBorder = { fg = c.border_highlight, bg = bg_main }, -- Float Border.
         FloatTitle = { fg = c.border_highlight, bg = bg_main }, -- Float Title.
         Folded = { fg = c.green_faint, bg = c.bg_dim }, -- Line for closed folds.
