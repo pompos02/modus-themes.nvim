@@ -40,10 +40,10 @@ M.modus_operandi = {
     magenta_warmer = "#b11f8b",
     magenta_cooler = "#7a3bd6",
     magenta_faint = "#c05ad8",
-    cyan = "#14a8bb",
-    cyan_warmer = "#20b0a4",
-    cyan_cooler = "#2EB36A",
-    cyan_faint = "#57c4d1",
+    cyan = "#005e8b",
+    cyan_warmer = "#3f578f",
+    cyan_cooler = "#005f5f",
+    cyan_faint = "#005077",
     rust = "#de7a35",
     gold = "#c9933d",
     olive = "#7f8f3a",
@@ -59,7 +59,7 @@ M.modus_operandi = {
     yellow_intense = "#a67600",
     blue_intense = "#1a86dd",
     magenta_intense = "#c12fe2",
-    cyan_intense = "#1db7cf",
+    cyan_intense = "#008899",
 
     -- Intense should only be combined with fg_main for text
     bg_red_intense = "#ff867f",

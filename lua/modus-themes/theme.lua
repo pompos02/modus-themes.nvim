@@ -315,7 +315,7 @@ function M.setup()
                 ["@keyword.type"] = { link = "@type" }, -- Keywords defining composite types (e.g. `struct`, `enum` in C).
                 ["@keyword.modifier"] = { link = "@keyword" }, -- Keywords defining type modifiers (e.g. `const`, `static`, `public`).
                 ["@keyword.repeat"] = { link = "Repeat" }, -- Keywords related to loops (e.g. `for`, `while`).
-                ["@keyword.return"] = { link = "@keyword" }, -- Keywords like `return` and `yield`.
+                ["@keyword.return"] = { link = "@keyword", bold=true }, -- Keywords like `return` and `yield`.
                 ["@keyword.debug"] = { link = "Debug" }, -- Keywords related to debugging (e.g. `assert`).
                 ["@keyword.exception"] = { link = "Exception" }, -- Keywords related to exceptions (e.g. `throw`, `catch`).
 
